@@ -33,12 +33,13 @@ public:
 
 	}
 
-	int alphaVal() {
-		
+	int alphaVal() {				//give each letter of 
+								//alphabet a value
 		char alphaChar = 'a';
+		int i = 0;
 
-		for (int i; i < 27; i++) {
-			alphaChar = i;
+		for (i; i < 27; i++) {
+			
 			alphaChar++;
 		}
 	}
