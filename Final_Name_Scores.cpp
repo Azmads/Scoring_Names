@@ -31,19 +31,40 @@ void alphabetList(fstream &infile) {
 }
 
 
+int main()
+{	
+	fstream infile;
+	alphabetList(infile);
+
 	
-	int main()						//execute main file
+	int CalculatedFinalScore = 0;
+	//opens the file
+	std::ifstream newfile("names.txt"); std::string line;
+	int counter = 1;
+	// does the processing of each name
+	while (std::getline(newfile, line))
 	{
-		fstream infile;
-		ofstream outfile;				//ready file for write/read
 
-		
-		
-		alphabetList(infile);
-		
-		
-		getchar();					//keep debug window open
+		int totalScore = 0; int TemporaryScore = 0;
+		std::istringstream iss(line);
+		string word;
+		// processes each word in a given name 
+		if (!(iss >> word)) { break; }
+		// calculates the score of all names based on the criteria
+		for (int i = 0; i<word.length(); i++) {
+			int _char = word[i];
+			TemporaryScore += (_char - 64);
+		}
+		//stores all namescore numerical values
+		totalScore = TemporaryScore*counter;
+		cout << "The namescore for " << word << " is: " << totalScore << endl;
+
+		CalculatedFinalScore += totalScore;
+		//counter helps simplify things by making it easier to manage & identity the position of all the names in a given file
+		counter++;
 	}
-
-
-
+	// outputs the final score
+	cout << "Total sum of all name-scores is : " << CalculatedFinalScore << endl;
+	system("PAUSE");
+	return 0;
+}
