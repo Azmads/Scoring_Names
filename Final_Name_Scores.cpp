@@ -6,8 +6,9 @@
 
 using namespace std;
 
-void alphabetList(ifstream &infile, ofstream &outfile) {
-	string nameList[6000];
+void alphabetList(fstream &infile) {
+	const int size = 6000;
+	string nameList[size];
 	string line;
 	int i = 0;
 	infile.open("names.txt");
@@ -16,15 +17,16 @@ void alphabetList(ifstream &infile, ofstream &outfile) {
 		nameList[i] = line;
 		i++;
 		}
-
+	infile.close();
 	
 	sort(begin(nameList), end(nameList));	//sort names in alphabetical in array
-	for (int k = 0; k < 6000; k++) {
+	
+	fstream outfile("names.txt");
 
+	for (int k = 0; k < size; k++) {			//write new alphabetical list to names.txt file
 		if (!nameList[k].empty()) {
-			cout << nameList[k] << endl;
+			outfile << nameList[k] << endl;
 		}
-		k++;
 	}
 }
 
@@ -32,13 +34,16 @@ void alphabetList(ifstream &infile, ofstream &outfile) {
 	
 	int main()						//execute main file
 	{
-		ifstream infile;
+		fstream infile;
 		ofstream outfile;				//ready file for write/read
 
 		
 		
-		alphabetList(infile, outfile);			//call alphabetical function
+		alphabetList(infile);
 		
 		
 		getchar();					//keep debug window open
 	}
+
+
+
