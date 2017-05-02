@@ -1,13 +1,13 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+#include <sstream>
 
 using namespace std;
 
 class names {
 public:
-	void lineArray(fstream &infile) {	//make array based
+	int lineArray(fstream &infile) {	//make array based
 		int n;							//on longest name
 		while (getline(infile, line)) {
 			int biggest_name = 0;
@@ -22,12 +22,19 @@ public:
 
 	}
 
+
+
+
 	void nameCount(fstream &infile) {
 		char arr1[10];
 
 		while(getline (infile, line)) {
-			
-			
+			istringstream ss(line);
+
+			ss >> arr1;
+
+
+		
 
 		}
 
@@ -47,7 +54,7 @@ public:
 
 private:
 	string line;
-
+	int nameScore;
 };
 
 int main()
@@ -66,6 +73,3 @@ int main()
 	infile.close();
 
 }
-
-
-
